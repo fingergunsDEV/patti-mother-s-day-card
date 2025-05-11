@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To My Dearest Patti</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Lora', serif;
+      background: linear-gradient(135deg, #fffaf5 0%, #ffe6e6 100%);
+      color: #333;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Background heart animations */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: rgba(212, 90, 90, 0.3);
+      transform: rotate(45deg);
+      animation: float 10s infinite;
+      pointer-events: none;
+    }
+    .heart::before,
+    .heart::after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: rgba(212, 90, 90, 0.3);
+      border-radius: 50%;
+      position: absolute;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: 10px;
+      top: 0;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    /* Sparkle effect */
+    .sparkle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      animation: sparkle 1s infinite;
+      pointer-events: none;
+    }
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Card flip container */
+    .card-container {
+      perspective: 1000px;
+      max-width: 650px;
+      width: 100%;
+    }
+
+    .card {
+      position: relative;
+      background-color: #fff;
+      border: 2px solid #f2c2c2;
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slideIn 1s ease-out forwards;
+    }
+
+    .card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 2.5rem;
+      box-sizing: border-box;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      background-color: #fff;
+      border: 2px solid #f2c2c2;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .card-back img {
+      max-width: 200px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      border: 2px solid #d45a5a;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      color: #d45a5a;
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 0.5s forwards;
+    }
+
+    p {
+      line-height: 1.8;
+      font-size: 1.15rem;
+      margin: 1rem 0;
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
+      animation-delay: calc(0.7s + var(--delay));
+    }
+
+    .signature {
+      margin-top: 2.5rem;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3rem;
+      text-align: right;
+      color: #d45a5a;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 1.5s forwards;
+    }
+
+    .flip-button {
+      display: block;
+      margin: 1.5rem auto 0;
+      padding: 0.75rem 1.5rem;
+      background-color: #d45a5a;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .flip-button:hover {
+      background-color: #b94a4a;
+      transform: scale(1.05);
+    }
+
+    /* Animation keyframes */
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Responsive design */
+    @media (max-width: 600px) {
+      .card {
+        padding: 1.5rem;
+        margin: 1rem;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      .card-back img {
+        max-width: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background hearts -->
+  <div class="heart" style="left: 10%; animation-delay: 0s;"></div>
+  <div class="heart" style="left: 30%; animation-delay: 2s;"></div>
+  <div class="heart" style="left: 50%; animation-delay: 4s;"></div>
+  <div class="heart" style="left: 70%; animation-delay: 6s;"></div>
+  <div class="heart" style="left: 90%; animation-delay: 8s;"></div>
+
+  <div class="card-container">
+    <div class="card">
+      <div class="card-front">
+        <h1>To My Dearest Patti</h1>
+        <p style="--delay: 0s;">Patti,<br><br>
+        Every moment with you feels like a gift—your laughter, your warmth, and the way you make every day brighter.</p>
+        <p style="--delay: 0.2s;">You’ve brought so much joy into my life, and I’m endlessly grateful for the way you understand me, challenge me, and love me through it all. Your heart is my favorite place to be.</p>
+        <p style="--delay: 0.4s;">Thank you for being my partner, my confidante, and my best friend. Whether we’re exploring new places, sharing quiet evenings, or just laughing over nothing, every second with you is unforgettable.</p>
+        <p style="--delay: 0.6s;">Here’s to our adventures together—especially that California trip we keep talking about. I can’t wait to see the sunset with you on the beach, sharing avocados and dreaming about our future. No matter where we go, you’re my home.</p>
+        <p style="--delay: 0.8s;">I love you more than words can say.<br>
+        Here’s to us, always.</p>
+        <p class="signature">With all my love,<br>
+        [Your Name]</p>
+        <button class="flip-button" onclick="flipCard()">Flip to See More</button>
+      </div>
+      <div class="card-back">
+        <img src="https://via.placeholder.com/200x200.png?text=You+%26+Me" alt="Patti and Me">
+        <p>A special moment just for you, Patti.<br>Here’s to countless more memories together!</p>
+        <p class="signature">Forever Yours,<br>[Your Name]</p>
+        <button class="flip-button" onclick="flipCard()">Back to Message</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Card flip function
+    function flipCard() {
+      const card = document.querySelector('.card');
+      card.classList.toggle('flipped');
+    }
+
+    // Add hearts dynamically
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.animationDelay = `${Math.random() * 8}s`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 2000);
+
+    // Add sparkles on hover
+    const card = document.querySelector('.card');
+    card.addEventListener('mousemove', (e) => {
+      if (Math.random() > 0.7) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = `${e.offsetX}px`;
+        sparkle.style.top = `${e.offsetY}px`;
+        card.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 1000);
+      }
+    });
+  </script>
+</body>
+</html>
