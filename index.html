@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To My Dearest Patti</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+  <title>Happy Mother's Day, Patti</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     body {
-      font-family: 'Lora', serif;
-      background: linear-gradient(135deg, #fffaf5 0%, #ffe6e6 100%);
+      font-family: 'Georgia', serif;
+      background: url('https://img.freepik.com/free-vector/freedom-rose-red-flower-frame-background-with-white-space_41066-2563.jpg?t=st=1746989638~exp=1746993238~hmac=6bbb4d10222b27722ad69d37828c1f16d8bfc8666b37ab8b3044bc12c63884d7&w=900');
+      background-size: cover;
       color: #333;
       margin: 0;
       padding: 2rem;
@@ -19,262 +20,236 @@
       overflow: hidden;
       position: relative;
     }
-
-    /* Background heart animations */
-    .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: rgba(212, 90, 90, 0.3);
-      transform: rotate(45deg);
-      animation: float 10s infinite;
-      pointer-events: none;
-    }
-    .heart::before,
-    .heart::after {
+    body::before {
       content: '';
-      width: 20px;
-      height: 20px;
-      background: rgba(212, 90, 90, 0.3);
-      border-radius: 50%;
-      position: absolute;
-    }
-    .heart::before {
-      top: -10px;
-      left: 0;
-    }
-    .heart::after {
-      left: 10px;
-      top: 0;
-    }
-    @keyframes float {
-      0% {
-        transform: translateY(0) rotate(45deg);
-        opacity: 0.8;
-      }
-      100% {
-        transform: translateY(-100vh) rotate(45deg);
-        opacity: 0;
-      }
-    }
-
-    /* Sparkle effect */
-    .sparkle {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 50%;
-      animation: sparkle 1s infinite;
-      pointer-events: none;
-    }
-    @keyframes sparkle {
-      0%, 100% { opacity: 0; transform: scale(0); }
-      50% { opacity: 1; transform: scale(1); }
-    }
-
-    /* Card flip container */
-    .card-container {
-      perspective: 1000px;
-      max-width: 650px;
-      width: 100%;
-    }
-
-    .card {
-      position: relative;
-      background-color: #fff;
-      border: 2px solid #f2c2c2;
-      padding: 2.5rem;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      transition: transform 0.6s;
-      transform-style: preserve-3d;
-      opacity: 0;
-      transform: translateY(50px);
-      animation: slideIn 1s ease-out forwards;
-    }
-
-    .card.flipped {
-      transform: rotateY(180deg);
-    }
-
-    .card-front, .card-back {
-      backface-visibility: hidden;
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      padding: 2.5rem;
-      box-sizing: border-box;
+      background: rgba(242, 194, 194, 0.2);
+      animation: pulse 6s infinite ease-in-out;
+      z-index: 0;
     }
-
-    .card-back {
-      transform: rotateY(180deg);
+    @keyframes pulse {
+      0% { opacity: 0.2; }
+      50% { opacity: 0.4; }
+      100% { opacity: 0.2; }
+    }
+    .card {
       background-color: #fff;
       border: 2px solid #f2c2c2;
-      border-radius: 15px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .card-back img {
-      max-width: 200px;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-      border: 2px solid #d45a5a;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-    }
-
-    h1 {
-      font-family: 'Dancing Script', cursive;
-      color: #d45a5a;
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 600px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       opacity: 0;
-      animation: fadeIn 1s ease-out 0.5s forwards;
+      animation: fadeIn 1.5s ease-in-out forwards;
+      position: relative;
+      z-index: 1;
+      text-align: left;
     }
-
-    p {
-      line-height: 1.8;
-      font-size: 1.15rem;
-      margin: 1rem 0;
-      opacity: 0;
-      animation: fadeIn 1s ease-out forwards;
-      animation-delay: calc(0.7s + var(--delay));
-    }
-
-    .signature {
-      margin-top: 2.5rem;
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.3rem;
-      text-align: right;
-      color: #d45a5a;
-      opacity: 0;
-      animation: fadeIn 1s ease-out 1.5s forwards;
-    }
-
-    .flip-button {
-      display: block;
-      margin: 1.5rem auto 0;
-      padding: 0.75rem 1.5rem;
-      background-color: #d45a5a;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-family: 'Lora', serif;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.3s;
-    }
-
-    .flip-button:hover {
-      background-color: #b94a4a;
-      transform: scale(1.05);
-    }
-
-    /* Animation keyframes */
-    @keyframes slideIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    /* Responsive design */
-    @media (max-width: 600px) {
-      .card {
-        padding: 1.5rem;
-        margin: 1rem;
-      }
-      h1 {
-        font-size: 2rem;
-      }
-      p {
-        font-size: 1rem;
-      }
-      .card-back img {
-        max-width: 150px;
-      }
+    h1 {
+      color: #d45a5a;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      animation: heartbeat 2.5s infinite;
+    }
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      10% { transform: scale(1.08); }
+      20% { transform: scale(1); }
+      30% { transform: scale(1.08); }
+      40% { transform: scale(1); }
+    }
+    .letter p {
+      line-height: 1.6;
+      font-size: 1.1rem;
+      opacity: 0;
+      animation: slideIn 1s ease-out forwards;
+    }
+    p:nth-child(1) { animation-delay: 0.8s; }
+    p:nth-child(2) { animation-delay: 1.2s; }
+    p:nth-child(3) { animation-delay: 1.6s; }
+    p:nth-child(4) { animation-delay: 2.0s; }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .typewriter {
+      position: relative;
+      overflow: hidden;
+    }
+    .typewriter::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 0;
+      background: #fff;
+      animation: type 2s steps(30, end) forwards;
+    }
+    @keyframes type {
+      from { width: 100%; }
+      to { width: 0; }
+    }
+    .signature {
+      margin-top: 2rem;
+      font-style: italic;
+      text-align: right;
+      transition: transform 0.3s ease, color 0.3s ease;
+      opacity: 0;
+      animation: slideIn 1s ease-out forwards;
+      animation-delay: 2.4s;
+    }
+    .signature:hover {
+      transform: scale(1.05);
+      color: #d45a5a;
+    }
+    .heart {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: #d45a5a;
+      transform: rotate(-45deg);
+      animation: float 5s linear forwards;
+      z-index: 0;
+      opacity: 0.6;
+    }
+    .heart::before,
+    .heart::after {
+      content: '';
+      width: 15px;
+      height: 15px;
+      background: #d45a5a;
+      border-radius: 50%;
+      position: absolute;
+    }
+    .heart::before {
+      top: -7.5px;
+      left: 0;
+    }
+    .heart::after {
+      left: 7.5px;
+      top: 0;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) rotate(-45deg); opacity: 0.6; }
+      50% { opacity: 0.3; }
+      100% { transform: translateY(-150px) rotate(-45deg); opacity: 0; }
+    }
+    .balloon {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff6f6f;
+      transform: rotate(-45deg);
+      animation: balloonFloat 7s linear infinite;
+      z-index: 0;
+      opacity: 0.8;
+    }
+    .balloon::before,
+    .balloon::after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: #ff6f6f;
+      border-radius: 50%;
+      position: absolute;
+    }
+    .balloon::before {
+      top: -10px;
+      left: 0;
+    }
+    .balloon::after {
+      left: 10px;
+      top: 0;
+    }
+    .balloon-string {
+      position: absolute;
+      width: 1px;
+      height: 30px;
+      background: #333;
+      bottom: -30px;
+      left: 9.5px;
+      transform-origin: top;
+      animation: sway 2s ease-in-out infinite;
+    }
+    @keyframes balloonFloat {
+      0% { transform: translateY(100vh) rotate(-45deg); opacity: 0.8; }
+      100% { transform: translateY(-100vh) rotate(-45deg); opacity: 0.5; }
+    }
+    @keyframes sway {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(10deg); }
+      100% { transform: rotate(0deg); }
     }
   </style>
 </head>
 <body>
-  <!-- Background hearts -->
-  <div class="heart" style="left: 10%; animation-delay: 0s;"></div>
-  <div class="heart" style="left: 30%; animation-delay: 2s;"></div>
-  <div class="heart" style="left: 50%; animation-delay: 4s;"></div>
-  <div class="heart" style="left: 70%; animation-delay: 6s;"></div>
-  <div class="heart" style="left: 90%; animation-delay: 8s;"></div>
-
-  <div class="card-container">
-    <div class="card">
-      <div class="card-front">
-        <h1>To My Dearest Patti</h1>
-        <p style="--delay: 0s;">Patti,<br><br>
-        Every moment with you feels like a gift—your laughter, your warmth, and the way you make every day brighter.</p>
-        <p style="--delay: 0.2s;">You’ve brought so much joy into my life, and I’m endlessly grateful for the way you understand me, challenge me, and love me through it all. Your heart is my favorite place to be.</p>
-        <p style="--delay: 0.4s;">Thank you for being my partner, my confidante, and my best friend. Whether we’re exploring new places, sharing quiet evenings, or just laughing over nothing, every second with you is unforgettable.</p>
-        <p style="--delay: 0.6s;">Here’s to our adventures together—especially that California trip we keep talking about. I can’t wait to see the sunset with you on the beach, sharing avocados and dreaming about our future. No matter where we go, you’re my home.</p>
-        <p style="--delay: 0.8s;">I love you more than words can say.<br>
-        Here’s to us, always.</p>
-        <p class="signature">With all my love,<br>
-        [Your Name]</p>
-        <button class="flip-button" onclick="flipCard()">Flip to See More</button>
-      </div>
-      <div class="card-back">
-        <img src="https://png.pngtree.com/background/20250106/original/pngtree-nice-and-beautiful-love-background-picture-image_15376199.jpg" alt="Patti and Me">
-        <p>A special moment just for you, Patti.<br>Here’s to countless more memories together!</p>
-        <p class="signature">Forever Yours,<br>[Your Name]</p>
-        <button class="flip-button" onclick="flipCard()">Back to Message</button>
-      </div>
+  <div class="card">
+    <h1>Happy Mother's Day, Patti</h1>
+    <div class="letter typewriter">
+      <p>Dear Patti,</p>
+      <p>This Mother’s Day, I want to celebrate you—my incredible partner, my confidant, and the light of my life. Your warmth, wisdom, and unwavering support make every day better, and I’m so grateful to have you by my side.</p>
+      <p>You bring joy to the moments we share, from our quiet evenings to our big adventures. Your laughter and love fill my heart, and I cherish the way you understand me like no one else.</p>
+      <p>Thank you for being my rock and my home. Here’s to you on this special day, and to all the beautiful days we’ll share together.</p>
     </div>
+    <p class="signature">With all my love,<br>
+      Jason</p>
   </div>
-
   <script>
-    // Card flip function
-    function flipCard() {
-      const card = document.querySelector('.card');
-      card.classList.toggle('flipped');
+    function launchConfetti() {
+      confetti({
+        particleCount: 80,
+        spread: 60,
+        origin: { y: 0.6 },
+        colors: ['#f2c2c2', '#d45a5a', '#fff']
+      });
     }
 
-    // Add hearts dynamically
     function createHeart() {
       const heart = document.createElement('div');
       heart.className = 'heart';
-      heart.style.left = `${Math.random() * 100}%`;
-      heart.style.animationDelay = `${Math.random() * 8}s`;
+      const card = document.querySelector('.card');
+      const cardRect = card.getBoundingClientRect();
+      const offsetX = Math.random() * (cardRect.width - 15);
+      heart.style.left = `${cardRect.left + offsetX}px`;
+      heart.style.top = `${cardRect.bottom - 20}px`;
       document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 10000);
+      setTimeout(() => heart.remove(), 5000);
     }
-    setInterval(createHeart, 2000);
 
-    // Add sparkles on hover
-    const card = document.querySelector('.card');
-    card.addEventListener('mousemove', (e) => {
-      if (Math.random() > 0.7) {
-        const sparkle = document.createElement('div');
-        sparkle.className = 'sparkle';
-        sparkle.style.left = `${e.offsetX}px`;
-        sparkle.style.top = `${e.offsetY}px`;
-        card.appendChild(sparkle);
-        setTimeout(() => sparkle.remove(), 1000);
-      }
+    function createBalloon() {
+      const balloon = document.createElement('div');
+      balloon.className = 'balloon';
+      const string = document.createElement('div');
+      string.className = 'balloon-string';
+      balloon.appendChild(string);
+      const card = document.querySelector('.card');
+      const cardRect = card.getBoundingClientRect();
+      const side = Math.random() < 0.5 ? -1 : 1;
+      const offsetX = side * (cardRect.width / 2 + 50 + Math.random() * 100);
+      balloon.style.left = `${cardRect.left + cardRect.width / 2 + offsetX}px`;
+      balloon.style.top = `${window.innerHeight}px`;
+      document.body.appendChild(balloon);
+      setTimeout(() => balloon.remove(), 7000);
+    }
+
+    window.addEventListener('load', () => {
+      launchConfetti();
+      setTimeout(launchConfetti, 800);
+      setInterval(createHeart, 800);
+      setInterval(createBalloon, 500);
     });
+
+    document.querySelector('.card').addEventListener('click', launchConfetti);
   </script>
 </body>
 </html>
